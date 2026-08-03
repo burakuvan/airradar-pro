@@ -1,0 +1,17 @@
+[Unit]
+Description=AirRadar Pro Raspberry Pi Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi-star
+WorkingDirectory=/home/pi-star/airradar-pro/pi-agent
+Environment=AIRRADAR_API_URL=https://radar.kuvan.dev/api/update
+Environment=AIRRADAR_INTERVAL=15
+ExecStart=/home/pi-star/airradar-pro/venv/bin/python /home/pi-star/airradar-pro/pi-agent/main.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
